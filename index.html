@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Affirmation Generator</title>
+  
+  <script>
+    // Prevent theme flash
+    (function(){
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if(saved === "dark" || (!saved && prefersDark)) {
+        document.documentElement.classList.add("dark");
+      }
+    })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#A3D2CA",
+            "bg-light": "#E0F2F1",
+            "bg-dark": "#121212",
+            "card-light": "#FFFFFF",
+            "card-dark": "#1E1E1E",
+          },
+          fontFamily: { display: ["Poppins", "sans-serif"] }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+  </style>
+
+  <meta name="description" content="Generate uplifting affirmations by category. Simple, beautiful, and free.">
+  <meta property="og:title" content="The Affirmation Generator">
+  <meta property="og:description" content="Choose a category, get a calm, focused affirmation.">
+  <meta name="theme-color" content="#A3D2CA">
+</head>
+
+<body class="bg-bg-light dark:bg-bg-dark transition-colors duration-300">
+  <div class="min-h-screen flex flex-col items-center p-4 sm:p-6 lg:p-8 relative overflow-hidden">
+    
+    <!-- Theme toggle -->
+    <button onclick="toggleTheme()" 
+            class="absolute top-4 right-4 md:top-8 md:right-8 p-3 bg-card-light dark:bg-card-dark rounded-full shadow-lg hover:scale-105 transition-all z-20"
+            aria-label="Toggle theme">
+      <span id="theme-icon" class="material-icons text-gray-700 dark:text-gray-200"></span>
+    </button>
+
+    <!-- Decorative blobs -->
+    <div class="pointer-events-none absolute top-0 left-0 -ml-16 -mt-16 w-64 h-64 bg-primary/20 dark:bg-primary/10 rounded-full blur-3xl"></div>
+    <div class="pointer-events-none absolute bottom-0 right-0 -mr-16 -mb-16 w-80 h-80 bg-primary/20 dark:bg-primary/10 rounded-full blur-3xl"></div>
+
+    <!-- Header -->
+    <header class="text-center mb-8 z-10">
+      <div class="flex items-center justify-center gap-4">
+        <span class="material-icons text-5xl text-gray-700 dark:text-gray-200 -scale-x-100">spa</span>
+        <div>
+          <p class="text-sm tracking-widest text-gray-600 dark:text-gray-400">THE</p>
+          <h1 class="text-4xl md:text-5xl font-bold tracking-wide text-gray-800 dark:text-gray-100">AFFIRMATION GENERATOR</h1>
+        </div>
+        <span class="material-icons text-5xl text-gray-700 dark:text-gray-200">spa</span>
+      </div>
+      <p class="mt-4 text-lg text-gray-600 dark:text-gray-400">Unlock Your Potential. Manifest Your Dreams.</p>
+    </header>
+
+    <!-- Main content -->
+    <main class="grid grid-cols-1 lg:grid-cols-3 gap-8 w-full max-w-6xl mb-8 z-10">
+      
+      <!-- Categories -->
+      <section class="lg:col-span-1 bg-card-light dark:bg-card-dark p-8 rounded-3xl shadow-xl">
+        <h2 class="text-xs font-semibold tracking-widest text-gray-500 dark:text-gray-400 mb-6 uppercase">
+          Choose Your Manifesting Category
+        </h2>
+        <div id="categories" class="space-y-3"></div>
+      </section>
+
+      <!-- Affirmation display -->
+      <section class="lg:col-span-2 bg-primary/40 dark:bg-primary/20 p-8 rounded-3xl shadow-xl">
+        <h2 class="text-xs font-semibold tracking-widest text-gray-500 dark:text-gray-400 mb-6 uppercase">
+          Your Daily Affirmation
+        </h2>
+        
+        <div class="bg-white/60 dark:bg-gray-800/60 backdrop-blur p-8 rounded-2xl min-h-[160px] flex items-center justify-center mb-6">
+          <p id="affirmation" class="text-xl md:text-2xl text-gray-800 dark:text-gray-100 text-center leading-relaxed">
+            Click a category to begin your journey.
+          </p>
+        </div>
+
+        <div class="flex gap-4 justify-center">
+          <button onclick="copyAffirmation()" 
+                  class="flex items-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-all">
+            <span class="material-icons">content_copy</span>
+            <span class="font-medium">Copy</span>
+          </button>
+          
+          <button onclick="newAffirmation()" 
+                  class="flex items-center gap-2 px-6 py-3 bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-100 rounded-full shadow-md hover:shadow-lg hover:scale-105 transition-all">
+            <span class="material-icons">refresh</span>
+            <span class="font-medium">New Affirmation</span>
+          </button>
+        </div>
+      </section>
+    </main>
+
+ <!-- Affiliate cards -->
+<section class="grid grid-cols-1 md:grid-cols-3 gap-6 w-full max-w-6xl mb-8 z-10">
+  
+  <!-- Card 1 -->
+  <a href="https://amzn.to/3IwOs6T" 
+     target="_blank" 
+     rel="noopener noreferrer"
+     class="bg-card-light dark:bg-card-dark rounded-2xl shadow-lg overflow-hidden hover:scale-[1.02] transition-transform block">
+    <img src="https://m.media-amazon.com/images/I/61rcsOUznfL._SY466_.jpg" 
+         alt="Book cover" 
+         class="w-full h-40 object-contain bg-gray-100 dark:bg-gray-800">
+    <div class="p-4 text-center">
+      <h3 class="font-semibold text-gray-800 dark:text-gray-100">Neuro Habits</h3>
+      <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Rewire Your Brain to Stop Self-Defeating Behaviors and Make the Right Choice Every Time.</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 italic">Affiliate Link</p>
+    </div>
+  </a>
+
+  <!-- Card 2 - with link -->
+  <a href="https://amzn.to/4mX19pz" 
+     target="_blank" 
+     rel="noopener noreferrer"
+     class="bg-card-light dark:bg-card-dark rounded-2xl shadow-lg overflow-hidden hover:scale-[1.02] transition-transform block">
+    <img src="https://m.media-amazon.com/images/I/61l9GvIYu9L._SY425_.jpg" 
+         alt="Book cover" 
+         class="w-full h-40 object-contain bg-gray-100 dark:bg-gray-800">
+    <div class="p-4 text-center">
+      <h3 class="font-semibold text-gray-800 dark:text-gray-100">The Emotional Mind</h3>
+      <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Overcome Anxiety, Stress, Negativity, and Procrastination.</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 italic">Affiliate Link</p>
+    </div>
+  </a>
+
+  <!-- Card 3 -->
+  <a href="https://amzn.to/3WbT4Tb" 
+     target="_blank" 
+     rel="noopener noreferrer"
+     class="bg-card-light dark:bg-card-dark rounded-2xl shadow-lg overflow-hidden hover:scale-[1.02] transition-transform block">
+    <img src="https://m.media-amazon.com/images/I/616RUM2BFSL._AC_SX679_.jpg" 
+         alt="Book cover" 
+         class="w-full h-40 object-contain bg-gray-100 dark:bg-gray-800">
+    <div class="p-4 text-center">
+      <h3 class="font-semibold text-gray-800 dark:text-gray-100">Gratitude Journal for Women</h3>
+      <p class="text-xs text-gray-600 dark:text-gray-400 mt-1">Wellness, Self Care and Mindfulness Journal, Gratitude Diary</p>
+      <p class="text-xs text-gray-500 dark:text-gray-400 mt-1 italic">Affiliate Link</p>
+    </div>
+  </a>
+</section>
+    <!-- Footer -->
+    <footer class="w-full max-w-6xl bg-primary/40 dark:bg-primary/20 rounded-full p-4">
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-700 dark:text-gray-300">
+        <a href="index.html" class="hover:underline font-semibold">Home</a>
+        <a href="about.html" class="hover:underline">About Us</a>
+<a href="mailto:your-affirmationgenerator@proton.me" class="hover:underline">Contact</a>
+<a href="privacy.html" class="hover:underline">Privacy</a>
+        <span>© 2025 The Affirmation Generator</span>
+      </div>
+    </footer>
+
+    <!-- Toast notification -->
+    <div id="toast" 
+         class="fixed bottom-8 left-1/2 -translate-x-1/2 px-6 py-3 bg-gray-800 text-white rounded-lg shadow-lg opacity-0 transition-opacity duration-300 pointer-events-none z-50">
+      Copied to clipboard!
+    </div>
+  </div>
+
+  <script>
+    const AFFIRMATIONS = {
+      prosperity: {
+        name: 'Wealth & Abundance',
+        icon: 'monetization_on',
+        affirmations: [
+          'I am a magnet for abundance, attracting endless opportunities and wealth into life.',
+          'Money flows to me easily and effortlessly.',
+          'I attract prosperity through creativity and hard work.',
+          'I am worthy of receiving massive amounts of wealth and success.',
+          'Every dollar I spend comes back to me multiplied.',
+          'I gratefully receive unexpected income and opportunities.'
+        ]
+      },
+      health: {
+        name: 'Health & Wellness',
+        icon: 'health_and_safety',
+        affirmations: [
+          'My body is healthy, and I am full of energy.',
+          'I nourish my body with healthy food and positive thoughts.',
+          'Every cell in my body vibrates with vitality and health.',
+          'I choose health and wellness above all else.',
+          'I listen to my body and give it exactly what it needs to thrive.',
+          'I treat my body with respect and kindness.'
+        ]
+      },
+      love: {
+        name: 'Love & Relationships',
+        icon: 'favorite_border',
+        affirmations: [
+          'I attract healthy and loving relationships into my life.',
+          'I am open to giving and receiving love.',
+          'My heart is open, and I radiate positive, loving energy.',
+          'I love and accept myself unconditionally.',
+          'I am safe, loved, and fully supported in all my relationships.',
+          'My energy attracts authentic and supportive people.'
+        ]
+      },
+      peace: {
+        name: 'Inner Peace',
+        icon: 'self_improvement',
+        affirmations: [
+          'I release all anxiety and choose inner peace.',
+          'I am centered, calm, and grounded in every moment.',
+          'Peace begins with me and flows into my entire life.',
+          'I trust the universe and find serenity in the present.',
+          'I breathe in calmness and exhale all doubt and fear.',
+          'I handle every challenge with grace and tranquility.'
+        ]
+      },
+      career: {
+        name: 'Career & Success',
+        icon: 'work',
+        affirmations: [
+          'I am a confident leader, and my work creates massive value.',
+          'Every day, I move closer to achieving my biggest career goals.',
+          'I attract opportunities that align perfectly with my highest purpose.',
+          'My skills and talents are highly valued and richly rewarded.',
+          'I trust my professional intuition and make powerful decisions.'
+        ]
+      },
+      gratitude: {
+        name: 'Gratitude & Joy',
+        icon: 'mood',
+        affirmations: [
+          'I choose joy, and I find happiness in the present moment.',
+          'My heart is filled with deep appreciation for everything I have.',
+          'I am grateful for the challenges that help me grow stronger.',
+          'The universe consistently showers me with blessings and happy surprises.',
+          'I see beauty and potential in every situation.'
+        ]
+      }
+    };
+
+    let currentCategory = 'prosperity';
+
+    // Render category buttons
+    function renderCategories() {
+      const container = document.getElementById('categories');
+      container.innerHTML = '';
+      
+      Object.keys(AFFIRMATIONS).forEach(key => {
+        const cat = AFFIRMATIONS[key];
+        const isActive = key === currentCategory;
+        
+        const btn = document.createElement('button');
+        btn.className = `w-full flex items-center gap-3 p-4 rounded-full transition-all ${
+          isActive 
+            ? 'bg-primary text-gray-800 font-semibold shadow-md' 
+            : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-primary/50'
+        }`;
+        btn.innerHTML = `
+          <span class="material-icons">${cat.icon}</span>
+          <span class="uppercase text-sm">${cat.name}</span>
+        `;
+        btn.onclick = () => selectCategory(key);
+        container.appendChild(btn);
+      });
+    }
+
+    // Select category and generate affirmation
+    function selectCategory(key) {
+      currentCategory = key;
+      renderCategories();
+      newAffirmation();
+    }
+
+    // Generate new affirmation
+    function newAffirmation() {
+      const affirmations = AFFIRMATIONS[currentCategory].affirmations;
+      const random = affirmations[Math.floor(Math.random() * affirmations.length)];
+      document.getElementById('affirmation').textContent = random;
+    }
+
+    // Copy affirmation to clipboard
+    async function copyAffirmation() {
+      const text = document.getElementById('affirmation').textContent;
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast();
+      } catch (err) {
+        console.error('Copy failed:', err);
+      }
+    }
+
+    // Show toast notification
+    function showToast() {
+      const toast = document.getElementById('toast');
+      toast.classList.remove('opacity-0');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0');
+      }, 2000);
+    }
+
+    // Theme toggle
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.contains('dark');
+      
+      if (isDark) {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      updateThemeIcon();
+    }
+
+    function updateThemeIcon() {
+      const icon = document.getElementById('theme-icon');
+      const isDark = document.documentElement.classList.contains('dark');
+      icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+    }
+
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.target.matches('input, textarea')) return;
+      
+      if (e.key.toLowerCase() === 'n') newAffirmation();
+      if (e.key.toLowerCase() === 'c') copyAffirmation();
+    });
+
+    // Initialize
+    renderCategories();
+    newAffirmation();
+    updateThemeIcon();
+  </script>
+</body>
+</html>

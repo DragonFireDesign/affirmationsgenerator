@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Privacy Policy - The Affirmation Generator</title>
+  
+  <script>
+    (function(){
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if(saved === "dark" || (!saved && prefersDark)) {
+        document.documentElement.classList.add("dark");
+      }
+    })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#A3D2CA",
+            "bg-light": "#E0F2F1",
+            "bg-dark": "#121212",
+            "card-light": "#FFFFFF",
+            "card-dark": "#1E1E1E",
+          },
+          fontFamily: { display: ["Poppins", "sans-serif"] }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+  </style>
+</head>
+
+<body class="bg-bg-light dark:bg-bg-dark transition-colors duration-300">
+  <div class="min-h-screen flex flex-col items-center p-4 sm:p-6 lg:p-8">
+    
+    <!-- Theme toggle -->
+    <button onclick="toggleTheme()" 
+            class="absolute top-4 right-4 md:top-8 md:right-8 p-3 bg-card-light dark:bg-card-dark rounded-full shadow-lg hover:scale-105 transition-all z-20"
+            aria-label="Toggle theme">
+      <span id="theme-icon" class="material-icons text-gray-700 dark:text-gray-200"></span>
+    </button>
+
+    <!-- Header -->
+    <header class="text-center mb-8">
+      <div class="flex items-center justify-center gap-4 mb-4">
+        <span class="material-icons text-4xl text-gray-700 dark:text-gray-200">security</span>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100">Privacy Policy</h1>
+        <span class="material-icons text-4xl text-gray-700 dark:text-gray-200">security</span>
+      </div>
+      <a href="/index.html" class="text-primary hover:underline">← Back to Affirmations</a>
+    </header>
+
+    <!-- Content -->
+    <main class="max-w-3xl w-full bg-card-light dark:bg-card-dark rounded-3xl shadow-xl p-8 md:p-12 mb-8">
+      <div class="prose prose-gray dark:prose-invert max-w-none">
+        
+        <p class="text-sm text-gray-600 dark:text-gray-400 mb-6">
+          <strong>Last Updated:</strong> January 2025
+        </p>
+
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Our Commitment to Your Privacy</h2>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          At The Affirmation Generator, we take your privacy seriously. This page explains what data we collect (spoiler: almost none), how we use it, and your rights.
+        </p>
+
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mt-8 mb-3">What We Don't Collect</h3>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          We do not:
+        </p>
+
+        <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mb-4 space-y-2">
+          <li>Require you to create an account</li>
+          <li>Collect personal information (name, email, address, etc.)</li>
+          <li>Track your affirmation history</li>
+          <li>Use cookies for tracking or advertising</li>
+          <li>Store your data on our servers</li>
+          <li>Sell your information to third parties</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mt-8 mb-3">What We Do Collect</h3>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          <strong>Theme Preference:</strong> We store your dark mode/light mode preference locally in your browser using localStorage. This stays on your device and is never sent to us.
+        </p>
+
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          <strong>Standard Server Logs:</strong> Like most websites, our hosting provider may collect standard technical information such as your IP address, browser type, and pages visited. This is used solely for security and troubleshooting purposes.
+        </p>
+
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mt-8 mb-3">Affiliate Links Disclosure</h3>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          This site contains affiliate links to products and services we believe may benefit you. If you click on an affiliate link and make a purchase, we may receive a commission at no additional cost to you.
+        </p>
+
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          When you click an affiliate link, you leave our site and go to the merchant's website. Their privacy policy will apply from that point forward. We have no control over their data collection practices.
+        </p>
+
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          We only recommend products and services we genuinely believe could be helpful. However, we are not responsible for the quality, accuracy, or practices of third-party sites or products.
+        </p>
+
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mt-8 mb-3">Third-Party Services</h3>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          We use the following third-party services:
+        </p>
+
+        <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mb-4 space-y-2">
+          <li><strong>Tailwind CDN:</strong> For styling our site</li>
+          <li><strong>Google Fonts:</strong> For typography</li>
+          <li><strong>Google Material Icons:</strong> For icons</li>
+        </ul>
+
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          These services may collect basic technical information. We recommend reviewing their privacy policies if you have concerns.
+        </p>
+
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mt-8 mb-3">Children's Privacy</h3>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          Our site is intended for general audiences. We do not knowingly collect information from children under 13. If you are a parent and believe your child has used our site, please contact us.
+        </p>
+
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mt-8 mb-3">Your Rights</h3>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          Since we don't collect personal data, there's nothing for us to delete, modify, or share. Your theme preference is stored locally in your browser - you can clear it anytime by clearing your browser's local storage or using incognito/private browsing mode.
+        </p>
+
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mt-8 mb-3">Changes to This Policy</h3>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          We may update this privacy policy from time to time. Any changes will be posted on this page with an updated "Last Updated" date. We encourage you to review this policy periodically.
+        </p>
+
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mt-8 mb-3">Contact Us</h3>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          If you have questions about this privacy policy, please visit our <a href="/contact" class="text-primary hover:underline">Contact page</a>.
+        </p>
+
+        <div class="mt-8 p-4 bg-primary/20 dark:bg-primary/10 rounded-lg">
+          <p class="text-sm text-gray-700 dark:text-gray-300">
+            <strong>Bottom line:</strong> We built this site to be simple and privacy-friendly. We don't want your data, we don't track you, and we don't sell anything to advertisers. You're here for affirmations, and that's all we care about.
+          </p>
+        </div>
+
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="w-full max-w-6xl bg-primary/40 dark:bg-primary/20 rounded-full p-4">
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-700 dark:text-gray-300">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="about.html" class="hover:underline">About Us</a>
+<a href="mailto:affirmationgenerator@proton.me" class="hover:underline">Contact</a>
+<a href="privacy.html" class="hover:underline font-semibold">Privacy</a>
+        <span>© 2025 The Affirmation Generator</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.contains('dark');
+      
+      if (isDark) {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      updateThemeIcon();
+    }
+
+    function updateThemeIcon() {
+      const icon = document.getElementById('theme-icon');
+      const isDark = document.documentElement.classList.contains('dark');
+      icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+    }
+
+    updateThemeIcon();
+  </script>
+</body>
+</html>

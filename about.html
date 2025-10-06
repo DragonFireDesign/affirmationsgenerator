@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>About - The Affirmation Generator</title>
+  
+  <script>
+    (function(){
+      const saved = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if(saved === "dark" || (!saved && prefersDark)) {
+        document.documentElement.classList.add("dark");
+      }
+    })();
+  </script>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#A3D2CA",
+            "bg-light": "#E0F2F1",
+            "bg-dark": "#121212",
+            "card-light": "#FFFFFF",
+            "card-dark": "#1E1E1E",
+          },
+          fontFamily: { display: ["Poppins", "sans-serif"] }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body { font-family: 'Poppins', sans-serif; }
+  </style>
+</head>
+
+<body class="bg-bg-light dark:bg-bg-dark transition-colors duration-300">
+  <div class="min-h-screen flex flex-col items-center p-4 sm:p-6 lg:p-8">
+    
+    <!-- Theme toggle -->
+    <button onclick="toggleTheme()" 
+            class="absolute top-4 right-4 md:top-8 md:right-8 p-3 bg-card-light dark:bg-card-dark rounded-full shadow-lg hover:scale-105 transition-all z-20"
+            aria-label="Toggle theme">
+      <span id="theme-icon" class="material-icons text-gray-700 dark:text-gray-200"></span>
+    </button>
+
+    <!-- Header -->
+    <header class="text-center mb-8">
+      <div class="flex items-center justify-center gap-4 mb-4">
+        <span class="material-icons text-4xl text-gray-700 dark:text-gray-200">spa</span>
+        <h1 class="text-3xl md:text-4xl font-bold text-gray-800 dark:text-gray-100">About Us</h1>
+        <span class="material-icons text-4xl text-gray-700 dark:text-gray-200">spa</span>
+      </div>
+      <a href="/index.html" class="text-primary hover:underline">← Back to Affirmations</a>
+    </header>
+
+    <!-- Content -->
+    <main class="max-w-3xl w-full bg-card-light dark:bg-card-dark rounded-3xl shadow-xl p-8 md:p-12 mb-8">
+      <div class="prose prose-gray dark:prose-invert max-w-none">
+        
+        <h2 class="text-2xl font-bold text-gray-800 dark:text-gray-100 mb-4">Welcome to The Affirmation Generator</h2>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          We created this site with a simple mission: to make positive affirmations accessible to everyone, anytime they need them.
+        </p>
+
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          Whether you're looking to attract abundance, find inner peace, improve your health, or manifest love, we've curated affirmations across six key life categories to support your journey.
+        </p>
+
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mt-8 mb-3">How It Works</h3>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          Simply choose a category that resonates with you, and we'll generate a powerful affirmation. Click "New Affirmation" as many times as you like until you find one that speaks to you. Copy it, save it, repeat it throughout your day.
+        </p>
+
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mt-8 mb-3">Our Philosophy</h3>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          We believe that positive thinking and intentional affirmations can have a real impact on your mindset and life. While affirmations aren't magic, they can help you:
+        </p>
+
+        <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 mb-4 space-y-2">
+          <li>Shift negative thought patterns</li>
+          <li>Build confidence and self-belief</li>
+          <li>Focus on your goals and intentions</li>
+          <li>Cultivate gratitude and positivity</li>
+          <li>Start your day with purpose</li>
+        </ul>
+
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mt-8 mb-3">About This Site</h3>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          This is a free tool built to help you on your personal development journey. We don't collect your data, track you, or require sign-ups. It's just you and your affirmations.
+        </p>
+
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          We do feature products and services we believe might support your growth. Some of these are affiliate links, which means we may earn a small commission if you make a purchase (at no extra cost to you). This helps us keep the site running and free for everyone.
+        </p>
+
+        <h3 class="text-xl font-semibold text-gray-800 dark:text-gray-100 mt-8 mb-3">Get in Touch</h3>
+        
+        <p class="text-gray-700 dark:text-gray-300 mb-4">
+          Have feedback or suggestions? We'd love to hear from you. Visit our <a href="/contact" class="text-primary hover:underline">Contact page</a> to get in touch.
+        </p>
+
+        <p class="text-gray-700 dark:text-gray-300 mt-8">
+          Thank you for being here. May your affirmations serve you well. ✨
+        </p>
+
+      </div>
+    </main>
+
+ <!-- Footer -->
+    <footer class="w-full max-w-6xl bg-primary/40 dark:bg-primary/20 rounded-full p-4">
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-2 text-sm text-gray-700 dark:text-gray-300">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="about.html" class="hover:underline font-semibold">About Us</a>
+<a href="mailto:affirmationgenerator@proton.me" class="hover:underline">Contact</a>
+<a href="privacy.html" class="hover:underline">Privacy</a>
+        <span>© 2025 The Affirmation Generator</span>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    function toggleTheme() {
+      const html = document.documentElement;
+      const isDark = html.classList.contains('dark');
+      
+      if (isDark) {
+        html.classList.remove('dark');
+        localStorage.setItem('theme', 'light');
+      } else {
+        html.classList.add('dark');
+        localStorage.setItem('theme', 'dark');
+      }
+      updateThemeIcon();
+    }
+
+    function updateThemeIcon() {
+      const icon = document.getElementById('theme-icon');
+      const isDark = document.documentElement.classList.contains('dark');
+      icon.textContent = isDark ? 'light_mode' : 'dark_mode';
+    }
+
+    updateThemeIcon();
+  </script>
+</body>
+</html>
